@@ -1,0 +1,13 @@
+---
+# tasks file for ec2
+- name: configuring ec2 instance
+  amazon.aws.ec2.instance: 
+    name: "ansible-instance"
+    instance_type: "t2.micro"
+    security_group: default
+    region: ap-south-1
+    aws_access_key: {{aws_access_key}}
+    aws_secret_key: {{aws_secret_key}}
+    network:
+       assign_pubic_ip: true 
+    image_id: 

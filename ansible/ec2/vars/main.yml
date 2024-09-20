@@ -1,0 +1,6 @@
+---
+# vars file for ec2
+image_id:
+instance_type: t2.micro
+region: ap-south-1
+security_group: 
