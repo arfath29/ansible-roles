@@ -1,0 +1,11 @@
+---
+- host: all
+  become: true
+  tasks: 
+  - name: gathering facts
+    ansible.builtin.debug:
+     var: ansible_facts 
+  - name: stopping ec2 instance
+    ansible.builtin.command: /sbin/shutdown -t now
+    when:
+     ansible_facts[os_family] == "Debian"
