@@ -2,12 +2,18 @@
 # tasks file for ec2
 - name: configuring ec2 instance
   amazon.aws.ec2.instance: 
-    name: "ansible-instance"
-    instance_type: "t2.micro"
-    security_group: default
-    region: ap-south-1
-    aws_access_key: {{aws_access_key}}
-    aws_secret_key: {{aws_secret_key}}
+    name: "{{ item.name }}"
+    instance_type: "{{ instance_type }}"
+    security_group: "{{ security_group }}"
+    region: "{{region}}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
     network:
        assign_pubic_ip: true 
-    image_id: 
+    tags:
+     Environment: "{{ item.name }}"
+    image_id: "{{ item.image }}"
+    loop:
+    - {image: "ami-08718895af4dfa033" , name: "ansible-1"}  # amazon linux
+    - {image: "ami-0522ab6e1ddcc7055" , name: "ansible-2"} 
+    - {image: "ami-0522ab6e1ddcc7055" , name: "ansible-3"}
