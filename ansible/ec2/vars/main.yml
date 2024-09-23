@@ -3,4 +3,5 @@
 
 instance_type: t2.micro
 region: ap-south-1
-security_group: 
+security_group: Ansible-SG
+key_pair: new-key

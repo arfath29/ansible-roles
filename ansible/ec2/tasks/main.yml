@@ -1,19 +1,19 @@
 ---
-# tasks file for ec2
 - name: configuring ec2 instance
-  amazon.aws.ec2.instance: 
-    name: "{{ item.name }}"
-    instance_type: "{{ instance_type }}"
-    security_group: "{{ security_group }}"
-    region: "{{region}}"
-    aws_access_key: "{{ aws_access_key }}"
-    aws_secret_key: "{{ aws_secret_key }}"
-    network:
-       assign_pubic_ip: true 
-    tags:
-     Environment: "{{ item.name }}"
-    image_id: "{{ item.image }}"
-    loop:
+  amazon.aws.ec2_instance: 
+      name: "{{ item.name }}"
+      instance_type: "{{ instance_type }}"
+      key_name: "{{ key_pair }}"
+      security_group: "{{ security_group }}"
+      region: "{{ region }}"
+      aws_access_key: "{{ ec2_access_key }}"
+      aws_secret_key: "{{ ec2_secret_key }}"
+      network:
+        assign_pubic_ip: true 
+      tags:
+       Environment: "{{ item.name }}"
+      image_id: "{{ item.image }}"
+  loop:
     - {image: "ami-08718895af4dfa033" , name: "ansible-1"}  # amazon linux
     - {image: "ami-0522ab6e1ddcc7055" , name: "ansible-2"} 
     - {image: "ami-0522ab6e1ddcc7055" , name: "ansible-3"}
