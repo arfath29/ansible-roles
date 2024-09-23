@@ -1,4 +1,0 @@
-host: localhost
-connection: local 
-roles:
- - ec2
